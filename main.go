@@ -12,4 +12,5 @@ func main() {
 
 	fmt.Println("--------Binary Search-----------")
 	binarysearch.RunBinarySearch()
+	binarysearch.RunBoards()
 }
