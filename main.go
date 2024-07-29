@@ -7,10 +7,15 @@ import (
 )
 
 func main() {
-	fmt.Println("--------Fibonacci: Ladder--------")
+	fmt.Println("--------Fibonacci: Ladder")
 	fibonacci.RunLadder()
 
-	fmt.Println("--------Binary Search-----------")
+	fmt.Println("--------Binary Search")
 	binarysearch.RunBinarySearch()
+	
+	fmt.Println("--------Binary Search: Boards")
 	binarysearch.RunBoards()
+
+	fmt.Println("--------Binary Search: MinMaxDivision")
+	binarysearch.RunMinMaxDivision()
 }
