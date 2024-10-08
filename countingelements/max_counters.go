@@ -6,27 +6,41 @@ package countingelements
 // - loop through element of A and update array N basing on the rules
 // Score: 77% (Correctness: 100% - Performance: 60%)
 
+// Step 2: Improvement
+// - Remove the nested loop to find the max value by using math.Max
+// - Remove the nested loop to set all element to maxValue by storing a minValue
+
 func MaxCounters(N int, A []int) []int {
 	counters := make([]int, N)
 
 	maxCounter := 0
+	operation := 0
+	minValue := 0
+
 	for i := range A {
-		if A[i] == N + 1 {
-			for j := range counters {
-				if counters[j] > maxCounter {
-					maxCounter = counters[j]
-				}
-			}
-
-			for j := range counters {
-				counters[j]=maxCounter
-			}
-
+		operation = A[i]
+		if operation == N + 1 {
+			minValue = maxCounter
 			continue
 		}
 
-		counters[A[i]-1] += 1
+		operation -= 1
+		counters[operation] += 1
+		maxCounter = Max(maxCounter, counters[operation])
+	}
+
+	for i := range counters {
+		counters[i] = Max(minValue, counters[i])
 	}
 
 	return counters
+}
+
+
+func Max(x, y int) int {
+	if x > y {
+		return x
+	}
+
+	return y
 }
