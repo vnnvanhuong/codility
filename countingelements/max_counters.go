@@ -25,7 +25,7 @@ func MaxCounters(N int, A []int) []int {
 		}
 
 		operation -= 1
-		counters[operation] += 1
+		counters[operation] = Max(counters[operation] + 1, minValue + 1)
 		maxCounter = Max(maxCounter, counters[operation])
 	}
 
