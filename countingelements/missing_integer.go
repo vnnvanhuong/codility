@@ -18,8 +18,10 @@ func MissingInteger(A []int) int {
 		}
 	}
 
-	for i := range m {
-		return i
+	for i := 1; i <= len(A)+1; i++ {
+		if m[i] {
+			return i
+		}
 	}
 
 	return 1 
