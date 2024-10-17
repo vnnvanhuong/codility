@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"vnnvanhuong/codility/countingelements"
+	"vnnvanhuong/codility/prefixsums"
 )
 
 func main() {
-	r := countingelements.MissingInteger([]int{1, 3, 6, 4, 1, 2})
+	r := prefixsums.GenomicRangeQuery("CAGCCTA", []int{2, 5, 0}, []int{4, 5, 6})
 	fmt.Printf("Result: %d", r)
 }
