@@ -1,6 +1,7 @@
 package sorting_test
 
 import (
+	"math"
 	"testing"
 	"vnnvanhuong/codility/sorting"
 )
@@ -10,7 +11,11 @@ func TestTriangle(t *testing.T) {
 		t.Errorf("Expected: 1, Got: %d", r)
 	}
 
-	if r := sorting.Triangle([]int{10, 2, 5, 1}); r != 1 {
+	if r := sorting.Triangle([]int{10, 2, 5, 1}); r != 0 {
 		t.Errorf("Expected: 0, Got: %d", r)
+	}
+
+	if r := sorting.Triangle([]int{math.MaxInt32, math.MaxInt32, 5, 1}); r != 1 {
+		t.Errorf("Expected: 1, Got: %d", r)
 	}
 }
