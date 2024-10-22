@@ -1,28 +1,31 @@
 package sorting
 
 import (
-	"math"
+	"sort"
 )
 
 // Approach 1: Brute Force O(N**3)
+// Approach 2: sort, get three last element
 
 func MaxProductOfThree(A []int) int {
 	n := len(A)
-	result := math.MinInt64
-	var product int
+	sort.Ints(A)
 
-	for p := 0; p < n-2; p++ {
-		for q := p + 1; q < n-1; q++ {
-			for r := p + 2; r < n; r++ {
-				if p < q && q < r {
-					product = A[p] * A[q] * A[r]
+	result := A[n-3] * A[n-2] * A[n-1]
+	p2 := A[0] * A[1] * A[n-1]
+	p3 := A[0] * A[n-2] * A[n-1]
+	p4 := A[0] * A[1] * A[2]
 
-					if product > result {
-						result = product
-					}
-				}
-			}
-		}
+	if p2 > result {
+		result = p2
+	}
+
+	if p3 > result {
+		result = p3
+	}
+
+	if p4 > result {
+		result = p4
 	}
 
 	return result
