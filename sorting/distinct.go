@@ -6,9 +6,9 @@ import "sort"
 // Create an array to contain unique elements
 // return size of the array
 
-// HashMap O(N*log(N)) or O(N)
+// HashMap O(N) or O(N*log(N))
 
-// Sorting O(N)
+// Sorting O(N) or O(N*log(N))
 func Distinct(A []int) int {
 	if len(A) == 0 {
 		return 0
