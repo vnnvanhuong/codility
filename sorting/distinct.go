@@ -1,22 +1,16 @@
 package sorting
 
-// Brute Force
+// Brute Force O(N**2)
 // Create an array to contain unique elements
 // return size of the array
+
+// HashMap O(N*log(N)) or O(N)
 func Distinct(A []int) int {
-	result := []int{}
+	result := make(map[int]bool)
 
 	for i := range A {
-		found := false
-		for j := range result {
-			if result[j] == A[i] {
-				found = true
-				break
-			}
-		}
-
-		if !found {
-			result = append(result, A[i])
+		if !result[A[i]] {
+			result[A[i]]=true
 		}
 	}
 
