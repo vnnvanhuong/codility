@@ -21,6 +21,11 @@ func TestNesting(t *testing.T) {
 			input:    "())",
 			expected: 0,
 		},
+		{
+			name:     "Test case 3",
+			input:    "",
+			expected: 1,
+		},
 	}
 
 	for _, tc := range tcs {
