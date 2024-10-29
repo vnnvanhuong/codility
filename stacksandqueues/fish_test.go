@@ -18,6 +18,12 @@ func TestFish(t *testing.T) {
 			direction: []int{0, 1, 0, 0, 0},
 			expected:  2,
 		},
+		{
+			name:      "test case 2",
+			size:      []int{4, 3, 2, 1, 5},
+			direction: []int{1, 1, 0, 1, 0},
+			expected:  1,
+		},
 	}
 
 	for _, tc := range tcs {
