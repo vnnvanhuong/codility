@@ -6,6 +6,7 @@ package stacksandqueues
 // if equal, keep the previous block, not count
 // if smaller, replace the previous block, count++
 // if greater, keep the previous block, count++
+// return the counter
 //
 // for example,
 // 8, 8, 5, 7, 9, 8, 7, 4, 8
@@ -19,5 +20,28 @@ package stacksandqueues
 // 4 - s =[4], c=6
 // 8 - s =[4], c=7
 func StoneWall(H []int) int {
-	return -1
+	stack := []int{}
+	count := 0
+
+	for _, h := range H {
+		n := len(stack)
+		if n == 0 {
+			stack = append(stack, h)
+			count++
+			continue
+		}
+
+		p := stack[n-1]
+		switch {
+		case h > p:
+			count++
+		case h < p:
+			count++
+			stack = stack[:n-1]
+		default:
+			// do nothing
+		}
+	}
+
+	return count
 }

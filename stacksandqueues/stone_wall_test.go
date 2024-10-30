@@ -16,6 +16,11 @@ func TestStoneWall(t *testing.T) {
 			height:   []int{8, 8, 5, 7, 9, 8, 7, 4, 8},
 			expected: 7,
 		},
+		{
+			name:     "test case 2",
+			height:   []int{1, 2, 3, 3, 2, 1},
+			expected: 3,
+		},
 	}
 
 	for _, tc := range tcs {
