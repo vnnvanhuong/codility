@@ -25,21 +25,14 @@ func StoneWall(H []int) int {
 
 	for _, h := range H {
 		n := len(stack)
-		if n == 0 {
-			stack = append(stack, h)
-			count++
-			continue
+		for n > 0 && stack[n-1] > h {
+			stack = stack[:n-1]
+			n--
 		}
 
-		p := stack[n-1]
-		switch {
-		case h > p:
+		if n == 0 || stack[n-1] < h {
+			stack = append(stack, h)
 			count++
-		case h < p:
-			count++
-			stack = stack[:n-1]
-		default:
-			// do nothing
 		}
 	}
 
