@@ -16,6 +16,16 @@ func TestEquiLeader(t *testing.T) {
 			input:    []int{4, 3, 4, 4, 4, 2},
 			expected: 2,
 		},
+		{
+			name:     "test case 2",
+			input:    []int{},
+			expected: 0,
+		},
+		{
+			name:     "test case 3",
+			input:    []int{4, 4},
+			expected: 1,
+		},
 	}
 
 	for _, tc := range tcs {
