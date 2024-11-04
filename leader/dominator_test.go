@@ -6,7 +6,7 @@ import (
 	"vnnvanhuong/codility/leader"
 )
 
-func TestStoneWall(t *testing.T) {
+func TestDominator(t *testing.T) {
 	tcs := []struct {
 		name     string
 		input    []int
