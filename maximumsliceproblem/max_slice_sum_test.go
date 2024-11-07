@@ -31,6 +31,11 @@ func TestMaxSliceSum(t *testing.T) {
 			input:    []int{-2, 1},
 			expected: 1,
 		},
+		{
+			name:     "test case 5",
+			input:    []int{-2, -2},
+			expected: -2,
+		},
 	}
 
 	for _, tc := range tcs {

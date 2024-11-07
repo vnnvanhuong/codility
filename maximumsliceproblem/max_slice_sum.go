@@ -1,31 +1,16 @@
 package maximumsliceproblem
 
-// Brute Force
-// 3 2 -6 4 0
-// i = 0, n-2
-// j = i + 1, n-1
-// calculate sums from i to j
-// remember the max sum
+// Max Slice
+// 3, 2, -6, 4, 0
+// m=A[0], s=A[0]
+// s=max(0, max(s,s+A[i]))
+// m=max(m,s)
 func MaxSliceSum(A []int) int {
-	n := len(A)
-
 	maxSum := A[0]
-	for i := 0; i < n; i++ {
-		sum := A[i]
-		if sum > maxSum {
-			maxSum = sum
-		}
-
-		if i == n-1 {
-			break
-		}
-
-		for j := i + 1; j < n; j++ {
-			sum += A[j]
-			if sum > maxSum {
-				maxSum = sum
-			}
-		}
+	sum := A[0]
+	for i := 1; i < len(A); i++ {
+		sum = max(A[i], sum+A[i])
+		maxSum = max(maxSum, sum)
 	}
 
 	return maxSum
