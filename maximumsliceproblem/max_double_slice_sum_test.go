@@ -16,6 +16,16 @@ func TestMaxDoubleSliceSum(t *testing.T) {
 			input:    []int{3, 2, 6, -1, 4, 5, -1, 2},
 			expected: 17,
 		},
+		{
+			name:     "test case 2",
+			input:    []int{0, 10, -1, -5, 0},
+			expected: 10,
+		},
+		{
+			name:     "test case 3",
+			input:    []int{6, 1, 5, 6, 4, 2, 9, 4},
+			expected: 26,
+		},
 	}
 
 	for _, tc := range tcs {

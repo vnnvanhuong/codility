@@ -1,27 +1,25 @@
 package maximumsliceproblem
 
-// Brute Force
+// Prefix Sums
+// 3, 2, 6, -1, 4, 5, -1, 2
+// leftSums
+// rightSums
+// brute force to get maxSum: leftSum + rightSum
 func MaxDoubleSliceSum(A []int) int {
-	n := len(A)
+	leftSums := make([]int, len(A))
+	rightSums := make([]int, len(A))
 
-	prefixSum := make([]int, n+1)
-	for i := 0; i < n; i++ {
-		prefixSum[i+1] = prefixSum[i] + A[i]
+	for i := 1; i < len(A)-1; i++ {
+		leftSums[i] = max(0, max(A[i], leftSums[i-1]+A[i]))
+	}
+
+	for i := len(A) - 2; i > 0; i-- {
+		rightSums[i] = max(0, max(A[i], rightSums[i+1]+A[i]))
 	}
 
 	maxSum := 0
-	for left := 0; left < n-2; left++ {
-		for right := left + 2; right < n; right++ {
-			for middle := left + 1; middle < right; middle++ {
-				leftSum := prefixSum[middle] - prefixSum[left+1]
-				rightSum := prefixSum[right-1] - prefixSum[middle]
-				total := leftSum + rightSum
-
-				if total > maxSum {
-					maxSum = total
-				}
-			}
-		}
+	for i := 1; i <= len(A)-2; i++ {
+		maxSum = max(maxSum, leftSums[i-1]+rightSums[i+1])
 	}
 
 	return maxSum
