@@ -1,38 +1,35 @@
 package primenumber
 
+// increase flags from 1
+// try to set flags on every peak found
+// if the flags is redudant means it is the result
 func Flags(A []int) int {
-	n := len(A)
-	if n < 3 {
+	if len(A) < 3 {
 		return 0
 	}
 
-	maxPeaks := len(A) / 3
-	maxFlags := 0
+	flags := 1
+	for {
+		K := flags
 
-	for i := maxPeaks; i > 0; i-- {
-		flags := 0
-		previousPeak := 0
-		for j := 1; j < n-1; j++ {
-			if A[j] > A[j-1] && A[j] > A[j+1] {
-				if j == 1 || j-previousPeak >= i {
-					flags++
-					previousPeak = j
-				}
+		for i := 1; i < len(A)-1; i++ {
+			if A[i] > A[i-1] && A[i] > A[i+1] {
+				K--            // set the flag
+				i += flags - 1 // next peak
+			}
+
+			if K == 0 {
+				break // no flag to set
 			}
 		}
 
-		maxFlags = max(maxFlags, flags)
-
-		if maxFlags == i {
+		if K > 0 { // flag is redundant
+			flags--
 			break
 		}
+
+		flags++
 	}
 
-	return maxFlags
+	return flags
 }
-
-// brute force to find the maximum flags
-// i from 1 to len(A)/3 since maxium peaks if len(A)/3
-// j from 0 to len(A)
-// max = i if there i peaks
-// return max
