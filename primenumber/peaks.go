@@ -1,5 +1,7 @@
 package primenumber
 
+import "math"
+
 // 1, 2, 3, 4, 3, 4, 1, 2, 3, 4, 6, 2
 //
 // Intituiative
@@ -30,8 +32,23 @@ func Peaks(A []int) int {
 		return 0
 	}
 
-	peaks := []int{}
+	isPrimeLen := true
+	for i := 2; i <= int(math.Sqrt(float64(N))); i++ {
+		if N%i == 0 {
+			isPrimeLen = false
+			break
+		}
+	}
 
+	if isPrimeLen {
+		for i := 1; i < N-1; i++ {
+			if A[i] > A[i-1] && A[i] > A[i+1] {
+				return 1
+			}
+		}
+	}
+
+	peaks := []int{}
 	for i := 1; i < N-1; i++ {
 		if A[i] > A[i-1] && A[i] > A[i+1] {
 			peaks = append(peaks, i)
@@ -42,29 +59,30 @@ func Peaks(A []int) int {
 		return 0
 	}
 
-	maxPeaks := 0
-	for b := 3; b < N/2; b++ {
+	for b := int(math.Max(float64(3), float64(N/len(peaks)))); b <= N/2; b++ {
 		if N%b != 0 {
 			continue
 		}
 
-		p := 0
+		p := -1
 		count := 0
-		for c := b - 1; c < N; c += b {
-			if c >= peaks[p] {
-				p++
+		for _, peak := range peaks {
+			found := peak / b
+			if p < found {
+				p = found
 				count++
+				continue
+			}
+
+			if p > found {
+				break
 			}
 		}
 
-		if count > maxPeaks {
-			maxPeaks = count
+		if count == N/b {
+			return count
 		}
 	}
 
-	if len(peaks) > 0 && maxPeaks == 0 {
-		maxPeaks = 1
-	}
-
-	return maxPeaks
+	return 1
 }
