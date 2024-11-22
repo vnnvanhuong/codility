@@ -6,18 +6,46 @@ package sieveoferatosthenes
 // count divisor of each, result = len(A) - count
 // time complexity: O(N*N)
 //
-// hashmap
-// O(N)
+// Sieve
+// 3, 1, 2, 3, 6
+// occurences 3:2, 1:1, 2:1, 6:1
+// divisors 3:1, 1:0, 2:1, 6:4
+// visited 3:true 1:true 2:true 6:true
 func CountNonDivisible(A []int) []int {
-	r := make([]int, len(A))
+	result := make([]int, len(A))
 
-	for i := 0; i < len(A); i++ {
-		for j := 0; j < len(A); j++ {
-			if A[i]%A[j] != 0 {
-				r[i] += 1
-			}
-		}
+	occurences := make(map[int]int)
+	divisors := make(map[int]int)
+	visited := make(map[int]bool)
+
+	for _, x := range A {
+		occurences[x]++
+		divisors[x]++
 	}
 
-	return r
+	for i, x := range A {
+		if visited[x] {
+			result[i] = len(A) - divisors[x]
+			continue
+		}
+
+		for k := 1; k*k <= x; k++ {
+			if x%k != 0 {
+				continue
+			}
+
+			if occurences[k] > 0 && x != 1 {
+				divisors[x] += occurences[k]
+			}
+
+			if occurences[x/k] > 0 && k != 1 && k != x/k {
+				divisors[x] += occurences[x/k]
+			}
+		}
+
+		result[i] = len(A) - divisors[x]
+		visited[x] = true
+	}
+
+	return result
 }
