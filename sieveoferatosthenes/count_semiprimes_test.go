@@ -19,7 +19,7 @@ func TestCountSemiPrimes(t *testing.T) {
 			N:        26,
 			P:        []int{1, 4, 16},
 			Q:        []int{26, 10, 20},
-			expected: []int{2, 4, 3, 2, 0},
+			expected: []int{10, 4, 0},
 		},
 	}
 
