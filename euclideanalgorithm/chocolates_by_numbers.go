@@ -8,14 +8,16 @@ package euclideanalgorithm
 // hashmap
 // put the element to the hashmap if condition meets
 // x := 0
-// x += M % N
+// x = (x + M) % N
 // if map contains x, stop
 func ChocolatesByNumbers(N, M int) int {
-	wrappers := make(map[int]bool)
+	return N / greatestCommonDivisor(N, M)
+}
 
-	for x := 0; !wrappers[x]; x = (x + M) % N {
-		wrappers[x] = true
+func greatestCommonDivisor(N, M int) int {
+	if N%M == 0 {
+		return M
 	}
 
-	return len(wrappers)
+	return greatestCommonDivisor(M, N%M)
 }
