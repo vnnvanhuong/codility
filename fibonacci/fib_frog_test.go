@@ -1,11 +1,11 @@
-package fibonaccinumbers_test
+package fibonacci_test
 
 import (
 	"testing"
-	"vnnvanhuong/codility/fibonaccinumbers"
+	"vnnvanhuong/codility/fibonacci"
 )
 
-func TestCommonPrimeDivisors(t *testing.T) {
+func TestFibFrog(t *testing.T) {
 	tcs := []struct {
 		name     string
 		input    []int
@@ -20,7 +20,7 @@ func TestCommonPrimeDivisors(t *testing.T) {
 
 	for _, tc := range tcs {
 		t.Run(tc.name, func(t *testing.T) {
-			actual := fibonaccinumbers.FibFrog(tc.input)
+			actual := fibonacci.FibFrog(tc.input)
 			if actual != tc.expected {
 				t.Errorf("Expected: %d, Got: %d", tc.expected, actual)
 			}

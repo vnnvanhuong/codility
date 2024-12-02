@@ -1,11 +1,10 @@
 package fibonacci
 
 import (
-	"fmt"
 	"math"
 )
 
-func ladder(A []int, B []int) []int {
+func Ladder(A []int, B []int) []int {
 	n := len(A)
 	result := make([]int, n)
 
@@ -25,9 +24,5 @@ func step(a int) int {
 		return 2
 	}
 
-	return step(a-1) + step(a-2);
-}
-
-func RunLadder() {
-	fmt.Println("Expected: [5 1 8 0 1] - Got: ", ladder([]int{4,4,5,5,1}, []int{3,2,4,3,1}))
+	return step(a-1) + step(a-2)
 }
